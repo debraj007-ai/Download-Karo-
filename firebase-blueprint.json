@@ -1,0 +1,89 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account details including subscription tier and premium status.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique user ID from Firebase Authentication."
+        },
+        "email": {
+          "type": "string",
+          "description": "Primary email address of the user."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Full name display name."
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Avatar image URL."
+        },
+        "isPremium": {
+          "type": "boolean",
+          "description": "Whether the user has premium features unlocked."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of user registration."
+        }
+      },
+      "required": ["uid", "email", "isPremium", "createdAt"]
+    },
+    "Download": {
+      "title": "Download Record",
+      "description": "A record of a successful video or audio download by the user.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique ID of the download record."
+        },
+        "userId": {
+          "type": "string",
+          "description": "UID of the owner of this download record."
+        },
+        "url": {
+          "type": "string",
+          "description": "Original YouTube or Instagram video link."
+        },
+        "downloadUrl": {
+          "type": "string",
+          "description": "Temporary stream/download URL returned by the service."
+        },
+        "title": {
+          "type": "string",
+          "description": "Extracted title of the video."
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["youtube", "instagram"],
+          "description": "The social media platform of the video."
+        },
+        "quality": {
+          "type": "string",
+          "description": "Downloaded media quality format (e.g., 1080p, audio)."
+        },
+        "downloadedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of the download action."
+        }
+      },
+      "required": ["id", "userId", "url", "downloadUrl", "platform", "quality", "downloadedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Access control and settings for a specific user profile."
+    },
+    "/users/{userId}/downloads/{downloadId}": {
+      "schema": "Download",
+      "description": "Download history logs created by the user."
+    }
+  }
+}

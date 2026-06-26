@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Grotesk:wght@500;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom keyframe animations for premium background gradient drift */
+@keyframes drift {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(35px, -60px) scale(1.2);
+  }
+  66% {
+    transform: translate(-25px, 25px) scale(0.85);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-drift-slow {
+  animation: drift 15s infinite alternate ease-in-out;
+}
+
+.animate-drift-slower {
+  animation: drift 22s infinite alternate-reverse ease-in-out;
+}
+
+/* Neo-Brutalist & Bold Typography Utility Styles */
+.bold-card-yt {
+  background: #0f1322;
+  border: 3px solid #f87171; /* red-400 */
+  box-shadow: 8px 8px 0px 0px #dc2626; /* red-600 */
+}
+
+.bold-card-ig {
+  background: #131022;
+  border: 3px solid #f472b6; /* pink-400 */
+  box-shadow: 8px 8px 0px 0px #db2777; /* pink-600 */
+}
+
+.bold-card-premium {
+  background: #17120a;
+  border: 3px solid #fbbf24; /* amber-400 */
+  box-shadow: 8px 8px 0px 0px #d97706; /* amber-600 */
+}
+
+.bold-card-neutral {
+  background: #0d1220;
+  border: 3px solid #94a3b8; /* slate-400 */
+  box-shadow: 6px 6px 0px 0px #334155; /* slate-700 */
+}
+
+.bold-btn-yt {
+  background: #dc2626; /* red-600 */
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 4px 4px 0px 0px #ffffff;
+  transition: all 0.1s ease-in-out;
+}
+.bold-btn-yt:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #ffffff;
+}
+.bold-btn-yt:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #ffffff;
+}
+
+.bold-btn-ig {
+  background: #db2777; /* pink-600 */
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 4px 4px 0px 0px #ffffff;
+  transition: all 0.1s ease-in-out;
+}
+.bold-btn-ig:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #ffffff;
+}
+.bold-btn-ig:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #ffffff;
+}
+
+.bold-btn-premium {
+  background: #d97706; /* amber-600 */
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 4px 4px 0px 0px #ffffff;
+  transition: all 0.1s ease-in-out;
+}
+.bold-btn-premium:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #ffffff;
+}
+.bold-btn-premium:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #ffffff;
+}
+
+.bold-btn-neutral {
+  background: #1e293b;
+  color: #ffffff;
+  border: 2px solid #475569;
+  box-shadow: 3px 3px 0px 0px #475569;
+  transition: all 0.1s ease-in-out;
+}
+.bold-btn-neutral:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px 0px #475569;
+}
+.bold-btn-neutral:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px 0px #475569;
+}
+
+.bold-input {
+  background: #020617;
+  border: 2px solid #475569;
+  box-shadow: inset 2px 2px 0px 0px rgba(0, 0, 0, 0.8);
+  transition: all 0.15s ease-in-out;
+}
+.bold-input:focus {
+  border-color: #f43f5e;
+  box-shadow: 0px 0px 0px 3px rgba(244, 63, 94, 0.2);
+}
+
+.bold-badge {
+  border: 1.5px solid currentColor;
+  background: rgba(255, 255, 255, 0.03);
+}
+

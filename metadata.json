@@ -1,0 +1,6 @@
+{
+  "name": "Download karo",
+  "description": "Premium YouTube and Instagram video downloader with smooth animations, high-resolution formats, and download tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
