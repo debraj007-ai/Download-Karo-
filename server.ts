@@ -52,7 +52,11 @@ async function startServer() {
   app.use("/api/progress", progressRouter);
   app.use("/api/video-info", videoInfoRouter);
   app.use("/api/file", fileRouter);
+app.get("/", (req, res) => {
 
+  res.send("Railway Backend Running");
+
+});
   // Development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
