@@ -47,7 +47,7 @@ import {
   User as FirebaseUser
 } from "firebase/auth";
 import { DownloadState, UserProfile, DownloadRecord } from "./types";
-
+const API_URL = "https://download-karo-production.up.railway.app";
 export default function App() {
   // Tab states
   const [activeTab, setActiveTab] = useState<"youtube" | "instagram">("youtube");
@@ -220,7 +220,7 @@ export default function App() {
     });
 
     try {
-     const response = await fetch("/api/download", {
+     const response = await fetch(`${API_URL}/api/download`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -242,7 +242,7 @@ const id = data.id;
 let completed = false;
 
 while (!completed) {
-  const progressRes = await fetch(`/api/progress/${id}`);
+ const progressRes = await fetch(`${API_URL}/api/progress/${id}`);
 
   if (progressRes.ok) {
     const progress = await progressRes.json();
@@ -262,13 +262,13 @@ while (!completed) {
 }
 // Download the completed file
 const link = document.createElement("a");
-link.href = `/api/file/${id}`;
+link.href = `${API_URL}/api/file/${id}`;
 link.download = "";
 document.body.appendChild(link);
 link.click();
 document.body.removeChild(link);
+// Save history only if user is logged in
 if (user) {
-    if (user) {
   await saveDownloadRecord(
     user.uid,
     url,
@@ -276,17 +276,16 @@ if (user) {
     isAudio ? "audio.mp3" : "video.mp4",
     platform,
     isAudio ? "audio" : selectedQuality
-);
+  );
 
-    await fetchHistory(user.uid);
+  await fetchHistory(user.uid);
 }
 
-}
 setDownloadState(prev => ({
-    ...prev,
-    isDownloading: false,
-    progress: 100,
-    statusText: "Download completed successfully!"
+  ...prev,
+  isDownloading: false,
+  progress: 100,
+  statusText: "Download completed successfully!"
 }));
 
 
@@ -1366,5 +1365,4 @@ setDownloadState(prev => ({
       </AnimatePresence>
 
     </div>
-  );
-}
+  );}

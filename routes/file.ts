@@ -18,13 +18,20 @@ router.get("/:id", (req, res) => {
     });
   }
 
-  const filepath = path.join(TEMP_DIR, file);
+const filepath = path.resolve(TEMP_DIR, file);
 
-  res.download(filepath, file, (err) => {
-    if (err) {
-      console.error(err);
+res.download(filepath, file, (err) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  // Delete the temporary file after a successful download
+  fs.unlink(filepath, (unlinkErr) => {
+    if (unlinkErr) {
+      console.error("Failed to delete temp file:", unlinkErr);
     }
   });
 });
-
+});
 export default router;

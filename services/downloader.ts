@@ -75,7 +75,7 @@ subprocess.stdout?.on("data", (data) => {
   if (match) {
     downloadProgress.set(id, {
       progress: Number(match[1]),
-      status: line
+      status: line,
     });
   }
 });
@@ -83,21 +83,31 @@ subprocess.stdout?.on("data", (data) => {
 subprocess.stdout?.pipe(process.stdout);
 subprocess.stderr?.pipe(process.stderr);
 
-subprocess.then(() => {
+try {
+  await subprocess;
+
+  const filePath = outputTemplate;
+
+  if (!fs.existsSync(filePath)) {
+    throw new Error("Download failed. File not found.");
+  }
+
   downloadProgress.set(id, {
     progress: 100,
     status: "Completed",
   });
-}).catch((err) => {
+
+  return {
+    id,
+    filePath,
+  };
+} catch (err) {
   downloadProgress.set(id, {
     progress: 0,
     status: "Failed",
   });
 
   console.error(err);
-});
-
-return {
-  id,
-};
+  throw err;
+}
 }
