@@ -37,6 +37,8 @@ const args = [
   "-o",
   outputTemplate,
   "--newline",
+  "--cookies",
+  path.join(process.cwd(), "cookies.txt"),
 ];
 
 if (audioOnly) {
