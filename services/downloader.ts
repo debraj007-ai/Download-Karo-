@@ -37,9 +37,14 @@ const args = [
   "-o",
   outputTemplate,
   "--newline",
-  "--cookies",
-  path.join(process.cwd(), "cookies.txt"),
 ];
+
+if (url.includes("instagram.com")) {
+  args.push(
+    "--cookies",
+    path.join(process.cwd(), "cookies.txt")
+  );
+}
 
 if (audioOnly) {
   args.push(
