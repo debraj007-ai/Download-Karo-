@@ -66,7 +66,8 @@ if (ffmpegPath) {
     ffmpegPath
   );
 }
-
+console.log("Cookies file:", path.join(process.cwd(), "cookies.txt"));
+console.log("Cookies exists:", fs.existsSync(path.join(process.cwd(), "cookies.txt")));
 const subprocess = execa("yt-dlp", args);
 
 subprocess.stdout?.on("data", (data) => {
